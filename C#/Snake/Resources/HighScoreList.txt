@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HighScores>
+  <Snake>
+    <name>Paul</name>
+    <score>244</score>
+  </Snake>
+  <Snake>
+    <name>Paul</name>
+    <score>173</score>
+  </Snake>
+  <Snake>
+    <name>Spenser</name>
+    <score>164</score>
+  </Snake>
+  <Snake>
+    <name>Them apples</name>
+    <score>163</score>
+  </Snake>
+  <Snake>
+    <name>Paul</name>
+    <score>118</score>
+  </Snake>
+  <Snake>
+    <name>Not A Bot</name>
+    <score>106</score>
+  </Snake>
+  <Snake>
+    <name>Spenser</name>
+    <score>102</score>
+  </Snake>
+  <Snake>
+    <name>Spenser</name>
+    <score>101</score>
+  </Snake>
+  <Snake>
+    <name>SuperDuper</name>
+    <score>101</score>
+  </Snake>
+  <Snake>
+    <name>SuperDuper</name>
+    <score>101</score>
+  </Snake>
+</HighScores>

@@ -1,0 +1,10 @@
+<SnakeSettings>
+  <BoardWidth>200</BoardWidth>
+  <BoardHeight>200</BoardHeight>
+  <BoardOffset>20</BoardOffset>
+  <MSPerFrame>33</MSPerFrame>
+  <FoodDensity>100</FoodDensity>
+  <SnakeStartLength>15</SnakeStartLength>
+  <SnakeRecycleRate>0.5</SnakeRecycleRate>
+  <GameMode>0</GameMode>
+</SnakeSettings>

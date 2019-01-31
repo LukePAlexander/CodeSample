@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PrintToFile</name>
+    </assembly>
+    <members>
+        <member name="M:PrintToFile.PrintToFile.Write(System.String)">
+            <summary>
+            Writes text to theh file debugData.txt and saves it to the Desktop.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:PrintToFile.PrintToFile.WriteAppend(System.String)">
+            <summary>
+            Appends text to the file debugData.txt and saves it to the Desktop.
+            If debugData.txt does not yet exists, it will call the Write function instead to create the file and save the text.
+            </summary>
+            <param name="text"></param>
+        </member>
+    </members>
+</doc>
