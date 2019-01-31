@@ -9,7 +9,7 @@
  *  This script assumes that there are 3 levels to a world, as each world is divided into thirds.
  *  If you are making a test level, please use a copy of the WorldTest scene so we can modularly import the level later.
  *  
- *  Note: [ ] marks in comments are from Luke to FrostKeep Studios, to indicate what portions of the code I didn't write.
+ *  Note: [ ] marks in comments are from Luke, to indicate what portions of the code I didn't write.
  */
 
 
