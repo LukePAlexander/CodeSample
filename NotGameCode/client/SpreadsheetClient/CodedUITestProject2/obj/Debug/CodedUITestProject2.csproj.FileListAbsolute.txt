@@ -1,0 +1,17 @@
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITestProject2\bin\Debug\CodedUITestProject2.dll
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITestProject2\bin\Debug\CodedUITestProject2.pdb
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITestProject2\obj\Debug\CodedUITestProject2.csprojResolveAssemblyReference.cache
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITestProject2\obj\Debug\CodedUITestProject2.dll
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITestProject2\obj\Debug\CodedUITestProject2.pdb
+C:\Users\Andrew\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\bin\Debug\CodedUITestProject2.dll
+C:\Users\Andrew\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\bin\Debug\CodedUITestProject2.pdb
+C:\Users\Andrew\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.csprojResolveAssemblyReference.cache
+C:\Users\Andrew\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.dll
+C:\Users\Andrew\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.pdb
+C:\Users\paulc\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\bin\Debug\CodedUITestProject2.dll
+C:\Users\paulc\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\bin\Debug\CodedUITestProject2.pdb
+C:\Users\paulc\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.dll
+C:\Users\paulc\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.pdb
+C:\Users\luke\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.csprojResolveAssemblyReference.cache
+C:\Users\luke\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.dll
+C:\Users\luke\Source\Repos\interactive-spreadsheet\src\client\SpreadsheetClient\CodedUITestProject2\obj\Debug\CodedUITestProject2.pdb

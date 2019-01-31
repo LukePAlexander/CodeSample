@@ -1,0 +1,85 @@
+﻿
+Entering Text Into A Cell:
+_________________________________________________________________________________________
+To enter text into a cell, simply click in the cell you want to edit. Use the keyboard to
+provide input. When you are finished editing the cell, you can either click to another
+cell, press Enter, Tab, or any of the arrow keys to navigate to a different cell.
+
+
+
+Entering a Formula Into A Cell:
+_________________________________________________________________________________________
+To enter a formula, start with an equals sign (ie: "="). A formula can include numbers,
+cell names (ie: a1, C12), and operators (allowed operators are: ( ) + - * / ).
+Examples of Formulas:
+   In cell A1     =(1+7)*9
+   In cell A2     = A1 + 300
+
+
+
+Keyboard Controls:
+_________________________________________________________________________________________
+Move cell selection up                Up Arrow
+Move cell selection right             Right Arrow or Tab Key
+Move cell selection down              Down Arrow or Enter Key
+Move cell selection left              Left Arrow
+Edit the currently selected cell      F2 Key
+Open a new spreadsheet                Ctrl+N
+Open a spreadsheet from a file        Ctrl+O
+Save the current spreadsheet          Ctrl+S
+Undo the last change made             Ctrl+Z
+Redo the last reverted change         Ctrl+Y
+
+
+
+Saving the Current Spreadsheet:
+_________________________________________________________________________________________
+To save your spreadsheet, you can access save from:
+  File/Save
+  File/Save As
+  Ctrl+S
+If you saved previously, clicking Save or pressing the keys Ctrl+S will save your work to
+the last selected save location.  If you wish to change this location, or save a new copy,
+click File/Save As to choose a different save location.
+If you have not previously saved your work, after clicking Save or Ctrl+S, you will be
+prompted to select a save file location.
+
+
+
+Creating a New Spreadsheet:
+_________________________________________________________________________________________
+To create a new Spreadsheet, click File/New or press the keys Ctrl+N. This opens a blank
+spreadsheet in a new window. It will not affect your current spreadsheet, and you can
+save or close either spreadsheet at any time.
+
+
+
+Open an Existing Spreadsheet From a File:
+_________________________________________________________________________________________
+To open a previously saved spreadsheet, click File/Open or press the keys Ctrl+O. An
+open file dialog will display and allow you to browse to the location of your spreadsheet
+file (.sprd). Once you find the spreadsheet file, double-click to open or select it and
+click the Open button.
+
+
+
+Undoing And Redoing Changes
+_________________________________________________________________________________________
+To undo a change made to the spreadsheet, click the Undo button, press the keys Ctrl+Z,
+or click Edit/Undo. You are allowed to undo up to 10 changes.
+Once you undo an action, you have the option to reverse the undo by clicking the Redo
+button. You can also access this feature by pressing the keys Ctrl+Y or clicking
+Edit/Redo.
+
+
+
+Progress Bar if Operation Takes Longer Than Expected
+_________________________________________________________________________________________
+If you are working on a very large spreadsheet with many formulas that depend on other
+cells, you may experience a lag in the program while the cells update. If this occurs,
+you will see a green progress bar on the bottom of the window to indicate the update
+progress.
+
+
+
+

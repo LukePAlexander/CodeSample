@@ -1,0 +1,5 @@
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITests\bin\Debug\CodedUITests.dll
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITests\bin\Debug\CodedUITests.pdb
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITests\obj\Debug\CodedUITests.csprojResolveAssemblyReference.cache
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITests\obj\Debug\CodedUITests.dll
+C:\Users\paulc\Source\Repos\01014696\PS4\CodedUITests\obj\Debug\CodedUITests.pdb
