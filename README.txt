@@ -13,3 +13,10 @@ Within this project I was the lead of 3 engineers as well as directly writing a 
 This was my first real project and I feel it had some learning curve but was a solid start. 
 
 
+Apart from games I also had some coding projects unrelated to games. You can find these in NotGameCode.
+
+The interactive speadsheet was a four man project about multiple client collaboration using TCP protocol 
+communication. Upon ending it was functional except for a race condition when multiple clients wished to modify
+the same cell while communications were interrupted. 
+
+
