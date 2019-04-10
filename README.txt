@@ -1,9 +1,10 @@
 Hello! 
 
-Thank you for looking at my repository, this is where I'll be keeping code that I've written or largely
-contributed to for people to check up on the quality of my work.
+Thank you for looking at my repository, this is where I'll be saving bits of code that I've worked on for other people to possibly use or draw from. Everything is an opportunity to learn! 
 
 For a bit of context:
+
+I am currently working on Psyche, from Jan 2019 - now. It's a fixed perspective 3D shooter in which your attacks and abilities change as your character goes insane or reclaims their sanity. I have been the largest contributer to this project, almost the only engineer contributing to this project. I am immensely proud of the results and progress I have made within this project. I'm currently most proud of the various managers, animators, and controllers that make up the player class, it was first based on the thirdpersoncontroller as part of Unity3D assets but I have adapted it greatly. I'm also proud of the homemade AI that makes up our opposing force, and the various attacks that both our protagonist and our enemies will be using.
 
 ForestBelow was written from Aug 2017- March 2018.
 My largest contributions were the save script and the world manager. I made contributions to most of the
