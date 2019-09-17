@@ -44,7 +44,7 @@ public class RangerTeleport : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (myHealth.Dead)
+        if (myHealth.Dead || myHealth.Stunned)
         {
             return;
         }

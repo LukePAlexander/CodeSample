@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Weapon : MonoBehaviour {
 
     public float damage;
-    public bool isProjectile = false;
+    public float ForceOfBullet = 100000;
+    public bool shouldDissapate = false;
     public bool isEnemyWeapon = false;
+    public bool isPlayerWeapon = false;
+    public bool applyForce;
+    private GameObject EO;
     //Type?
 	// Use this for initialization
 	void Start () {
@@ -23,6 +28,10 @@ public class Weapon : MonoBehaviour {
         //print("Triggered!");
         if (other.transform.tag != "Player" && other.transform.tag != "Enemy")
         {
+            if (shouldDissapate)
+            {
+                Destroy(this.gameObject, .0f);
+            }
             //print("Tag is: " + other.transform.tag);
             return;
         }
@@ -30,23 +39,31 @@ public class Weapon : MonoBehaviour {
         if(other.transform.tag == "Player")
         {
             //print("Hit player !");
+            if (!isPlayerWeapon)
+            {
+                PhaseManager PM = other.gameObject.GetComponent<PhaseManager>();
 
-            PhaseManager PM = other.gameObject.GetComponent<PhaseManager>();
-
-            PM.TakeDamage(damage);
+                PM.TakeDamage(damage);
+            }
         } else
         {
             if (!isEnemyWeapon)
             {
-                print("Hit enemy!");
                 EnemyHealth Enemy = other.gameObject.GetComponent<EnemyHealth>();
 
                 Enemy.TakeDamage(damage);
+
+                if (applyForce)
+                {
+                    Enemy.PushBack(ForceOfBullet, this.GetComponent<Rigidbody>().velocity);
+                }
             }
         }
-        if (isProjectile)
+        if (shouldDissapate)
         {
             Destroy(this.gameObject,.0f);
         }
     }
+
 }
+

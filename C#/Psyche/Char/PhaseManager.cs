@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PhaseManager : MonoBehaviour
 {
 
-    //Eventually want to turn to private
+    //Eventually want to turn to private, leave open for Artists to force phase/anim
     public int phase;
     //When Under phase2Threshold we go to phase2
     public int phase2Threshold;
@@ -15,6 +16,7 @@ public class PhaseManager : MonoBehaviour
 
     private GameObject HBar;
     private GameObject IBar;
+    public GameObject GOText;
 
     private float maxHealth = 100f;
     private float curHealth;
@@ -24,35 +26,26 @@ public class PhaseManager : MonoBehaviour
     public int RegenAmountPerSecond;
     private float curDelay;
 
+    private float restartTimer;
+    private float restartDelay = 5f;
+    public bool Stunned;
 
-    private GameObject AOEEffect;
-    private GameObject tempBox;
-    private GameObject tempShot;
-    private Vector3 initialHBar;
-    private int numHits;
-    private Vector3 curRotate;
-    
-
-    //When the melee animation changes, change this so the box only spawns for this long.
-    private float meleeAnimDuration = .633f;
-    private bool meleeing = false;
-
-    GameObject player;
-    Animator anim;
-    GameObject phase1;
-    Animator p1Anim;
-    RuntimeAnimatorController p1Controller;
-    Avatar p1Avatar;
-    GameObject phase2;
-    Animator p2Anim;
-    RuntimeAnimatorController p2Controller;
-    Avatar p2Avatar;
+    private GameObject player;
+    private Animator anim;
+    private GameObject phase1;
+    private Animator p1Anim;
+    private RuntimeAnimatorController p1Controller;
+    private Avatar p1Avatar;
+    private GameObject phase2;
+    private Animator p2Anim;
+    private RuntimeAnimatorController p2Controller;
+    private Avatar p2Avatar;
 
     private GameObject curPhaseObj;
 
     private AttackManager AM;
 
-
+    ThirdPersonCharacter TPC;
 
 
 
@@ -61,13 +54,13 @@ public class PhaseManager : MonoBehaviour
     {
 
         AM = transform.gameObject.GetComponent<AttackManager>();
-        //We should try to find a prev phase if we have different level loading, otherwise set to 1 I guess?
+        //We should try to find a prev phase if we have different level loading,
         phase = 1;
-        
 
+        TPC = gameObject.GetComponent<ThirdPersonCharacter>();
         anim = GetComponent<Animator>();
         player = GameObject.Find("/PlayerPrefab/Player");
-        phase1 = GameObject.Find("/PlayerPrefab/Player/Ethan");
+        phase1 = GameObject.Find("/PlayerPrefab/Player/Female");
         p1Anim = phase1.GetComponent<Animator>();
         p1Controller = p1Anim.runtimeAnimatorController;
         p1Avatar = p1Anim.avatar;
@@ -85,7 +78,6 @@ public class PhaseManager : MonoBehaviour
 
         HBar = GameObject.Find("HealthBar");
         IBar = GameObject.Find("InsanityBar");
-
     }
 
     // Update is called once per frame
@@ -104,86 +96,158 @@ public class PhaseManager : MonoBehaviour
             RefreshHealthAndIns();
         }
 
-        //Dev mode change phases
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        //Game Dev change phase cheats
+        if (Input.GetKeyDown(KeyCode.Comma))
         {
-            phase = 1;
-            phase1.SetActive(true);
-            phase2.SetActive(false);
-            anim.runtimeAnimatorController = p1Controller;
-            anim.avatar = p1Avatar;
-            print("Changed to phase : " + phase);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            phase = 2;
-            phase1.SetActive(false);
-            phase2.SetActive(true);
-            anim.runtimeAnimatorController = p2Controller;
-            anim.avatar = p2Avatar;
-            print("Changed to phase : " + phase);
+            if(phase == 1)
+            {
+                return;
+            } else
+            {
+                phase--;
+                print("phase-- is now :" + phase);
 
+                ChangeToPhase(phase);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //Game Dev change phase cheats
+        if (Input.GetKeyDown(KeyCode.Period))
         {
-            phase = 3;
-            phase1.SetActive(false);
-            phase2.SetActive(true);
-            anim.runtimeAnimatorController = p2Controller;
-            anim.avatar = p2Avatar;
-            print("Changed to phase : " + phase);
 
+            if (phase == 3)
+            {
+                return;
+            }
+            else
+            {
+                phase++;
+                print("phase++ is now :" + phase);
+
+                ChangeToPhase(phase);
+            }
         }
+
+        return;
+    }
+
+    public void SetStunned(float duration)
+    {
+        //Stunned is read by attackmanager, no further needed, however we keep stunned here
+        //because it's associated with explosions or taking damage.
+        Stunned = true;
+        StartCoroutine(RemoveStunned(duration));
+    }
+
+    IEnumerator RemoveStunned(float duration)
+    {
+        yield return new WaitForSecondsRealtime(duration);
+        Stunned = false;
+    }
+
+    //Add insanity to our bar. 
+    public void addIns(float howMuch)
+    {
+        curIns = curIns + howMuch;
+        
+        if(curIns > 100)
+        {
+            curIns = 100;
+        } else if(curIns < 0)
+        {
+            curIns = 0;
+        }
+
+        checkPhaseTransition();
+        RefreshHealthAndIns();
 
     }
 
 
     public void TakeDamage(float howMuch)
     {
-        //print("Oh heck, got hit!");
-        //Figure out how to find the mesh renderer first before doing DamageColor
-        //StartCoroutine(DamageColor());
-        //Change health/Ins values
-        curHealth -= howMuch;
-        curIns -= howMuch;
+        if (howMuch > curHealth)
+        {
+            curHealth = 0;
+        }
+        else
+        {
+            curHealth -= howMuch;
+        }
+        if (howMuch > curIns)
+        {
+            curIns = 0;
+        }
+        else
+        {
+            curIns -= howMuch;
+        }
         curDelay = RegenDelay;
 
 
-        //Handle Death (Nothing here yet)
-        if (curHealth <= 0)
-        {
-            //You Are Dead. Sthap.
-            Debug.Break();
-        }
-
-
-        //If your insanity is above threshold 2, should nothing happen?
-        if(curIns > phase2Threshold)
-        {
-            
-        //If damaged under the threshold, enter phase 2
-        } else if (curIns <= phase2Threshold && curIns > phase3Threshold && phase!=2)
-        {
-            ChangeToPhase(2);
-        } else if(curIns <= phase3Threshold && phase!=3)
-        {
-            ChangeToPhase(3);
-        }
+        checkPhaseTransition();
 
         RefreshHealthAndIns();
 
+        //Handle Death
+        if (curHealth <= 0)
+        {
+            die();
+        }
     }
 
+    private void checkPhaseTransition()
+    {
+    
+        if (curIns > phase2Threshold && phase != 1)
+        {
+            curPhaseObj.SetActive(false);
+
+            phase1.SetActive(true);
+            anim.runtimeAnimatorController = p1Controller;
+            anim.avatar = p1Avatar;
+            phase = 1;
+            curPhaseObj = phase1;
+
+            //If damaged under the threshold, enter phase 2
+        }
+        else if (curIns <= phase2Threshold && curIns > phase3Threshold && phase != 2)
+        {
+            curPhaseObj.SetActive(false);
+
+            phase2.SetActive(true);
+            anim.runtimeAnimatorController = p2Controller;
+            anim.avatar = p2Avatar;
+            phase = 2;
+            curPhaseObj = phase2;
+
+            //Same to enter phase 3
+        }
+
+        //Don't have phase 3 models yet, so set to 2.
+        else if (curIns <= phase3Threshold && phase != 3)
+        {
+            curPhaseObj.SetActive(false);
+
+            phase2.SetActive(true);
+            anim.runtimeAnimatorController = p2Controller;
+            anim.avatar = p2Avatar;
+            phase = 3;
+        }
+    }
+
+    //Manipulate the scale of the colored sprite making up the bar in order to indicate the current health and insanity. 
     private void RefreshHealthAndIns()
     {
         HBar.transform.localScale = new Vector3((curHealth / maxHealth), IBar.transform.localScale.y, 1);
         IBar.transform.localScale = new Vector3((curIns / maxIns), IBar.transform.localScale.y, 1);
     }
 
-    private void ChangeToPhase(int phase)
+
+    //Depreciated except for cheat changes, keep until models/anims fully implemented.
+    private void ChangeToPhase(int newPhase)
     {
         curPhaseObj.SetActive(false);
-        if (phase == 1)
+        if (newPhase == 1)
         {
             phase1.SetActive(true);
             anim.runtimeAnimatorController = p1Controller;
@@ -191,16 +255,17 @@ public class PhaseManager : MonoBehaviour
             phase = 1;
             curPhaseObj = phase1;
         }
-        else if (phase == 2)
+        else if (newPhase == 2)
         {
             phase2.SetActive(true);
             anim.runtimeAnimatorController = p2Controller;
             anim.avatar = p2Avatar;
             phase = 2;
             curPhaseObj = phase2;
+
         }
         //Don't have phase 3 yet, so set to 2
-        else if (phase == 3)
+        else if (newPhase == 3)
         {
             curPhaseObj.SetActive(false);
             phase2.SetActive(true);
@@ -210,22 +275,29 @@ public class PhaseManager : MonoBehaviour
         }
     }
 
-    //Wait a second, change back.
-    IEnumerator DamageColor()
+    private void die()
     {
-        MeshRenderer myMesh = GetComponentInChildren<MeshRenderer>();
-        Color storage = myMesh.material.color;
-        myMesh.material.color = Color.red;
-        yield return new WaitForSecondsRealtime(1);
-        myMesh.material.color = storage;
+        GOText.SetActive(true);
+
+        TPC.MovementLocked = true;
+        TPC.RotationLocked = true;
+        AM.CanAttack = false;
+        while (true)
+        {   
+            // .. increment a timer to count up to restarting.
+            restartTimer += Time.deltaTime;
+
+            // .. if it reaches the restart delay...
+            if (restartTimer >= restartDelay)
+            {
+                // .. then reload the currently loaded level.
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
-
-
-    //This will eventually hold a switch case that changes details about the shot we fire, such as the prefab and speed
-    public void ChangeBulletType(string newType)
-    {
-
-    }
-
    
 }

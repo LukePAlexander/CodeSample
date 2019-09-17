@@ -22,10 +22,8 @@ public class Spawner : MonoBehaviour {
     {
         while (true)
         {
-            print("Spawning");
             if (JustSpawned != null && JustSpawned.transform.position == transform.position + (transform.forward) + new Vector3(0, .8f, 0))
             {
-                print("Still here, no spawn");
             }
             else
             {
@@ -35,6 +33,5 @@ public class Spawner : MonoBehaviour {
 
             yield return new WaitForSecondsRealtime(8);
         }
-
     }
 }
